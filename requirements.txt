@@ -1,0 +1,10 @@
+Django==1.3
+django-debug-toolbar
+django-uni-form
+django-userswitch
+django-grappelli
+lettuce
+South
+ipython
+coverage
+django-coverage
