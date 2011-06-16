@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.translation import ugettext as _
+from django.contrib.auth.models import User
 
 from datetime import datetime, timedelta
 
@@ -50,3 +51,17 @@ class Competition(models.Model):
 
     def __unicode__(self):
         return self.title
+
+
+class Team(models.Model):
+    """ Team model. """
+    
+    name = models.CharField(_("Name"), max_length=55)
+
+
+class Participant(models.Model):
+    """ Participant model. """
+
+    competition = models.ForeignKey(Competition)
+    team = models.OneToOneField(Team)
+
