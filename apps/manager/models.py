@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.translation import ugettext as _
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
 
 from datetime import datetime, timedelta
 
@@ -59,9 +60,13 @@ class Team(models.Model):
     name = models.CharField(_("Name"), max_length=55)
 
 
-class Participant(models.Model):
-    """ Participant model. """
+class Profile(models.Model):
+    #FIXME: http://bit.ly/emhhhj
+    user = models.OneToOneField(User)
 
-    competition = models.ForeignKey(Competition)
-    team = models.OneToOneField(Team)
+    competition = models.ForeignKey(Competition, blank=True, null=True)
+    team = models.ForeignKey(Team, blank=True, null=True)
 
+    is_participant = models.BooleanField(default=False)
+
+User.profile = property(lambda u: Profile.objects.get_or_create(user=u)[0])
