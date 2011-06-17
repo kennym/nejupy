@@ -116,6 +116,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.admindocs',
 
+    'lettuce.django',
     'south',
     'grappelli',
 
@@ -146,6 +147,8 @@ LOGGING = {
         },
     }
 }
+
+AUTH_PROFILE_MODULE = 'manager.Profile'
 
 # import all local settings. See localsettings.py for details on LOCAL_MIDDLEWARE_CLASSES and LOCAL_APPS
 try:
