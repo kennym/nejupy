@@ -63,3 +63,6 @@ class Participant(User):
     """ The participant. """
     competition = models.ForeignKey(Competition)
     team = models.ForeignKey(Team)
+
+    def __unicode__(self):
+        return self.get_full_name()
