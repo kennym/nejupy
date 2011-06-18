@@ -1,0 +1,20 @@
+[
+    {
+        "pk": 1, 
+        "model": "manager.team", 
+        "fields": {
+            "name": "Test"
+        }
+    },
+    {
+        "pk": 1, 
+        "model": "manager.competition", 
+        "fields": {
+            "status": 0, 
+            "start_time": null, 
+            "end_time": null, 
+            "description": "test competition", 
+            "title": "test"
+        }
+    }
+]
