@@ -1,9 +1,9 @@
-from django.utils import unittest
+from django.test import TestCase
 
 from manager.models import Team
 
 
-class TeamTestCase(unittest.TestCase):
+class TeamTestCase(TestCase):
 
     def test_create_team(self):
         """ Test creating a team. """

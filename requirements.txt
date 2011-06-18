@@ -8,3 +8,4 @@ South
 ipython
 coverage
 django-coverage
+django-nose

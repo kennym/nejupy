@@ -5,7 +5,6 @@ PROJECT_ROOT = os.path.dirname(__file__)
 
 # Add apps and vendors directories to PYTHONPATH
 sys.path.insert(0, '%s/apps' % PROJECT_ROOT)
-sys.path.insert(1, '%s/vendor' % PROJECT_ROOT)
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -62,7 +61,7 @@ MEDIA_URL = ''
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
 # Examples: "http://foo.com/media/", "/media/".
-ADMIN_MEDIA_PREFIX = '/media/admin'
+ADMIN_MEDIA_PREFIX = '/media/admin/'
 
 STATIC_URL = '/media/'
 
@@ -116,9 +115,8 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.admindocs',
 
-    'lettuce.django',
     'south',
-    'grappelli',
+    #'grappelli',
 
     # Personal apps
     'manager',

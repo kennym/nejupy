@@ -56,17 +56,10 @@ class Competition(models.Model):
 
 class Team(models.Model):
     """ Team model. """
-    
     name = models.CharField(_("Name"), max_length=55)
 
 
-class Profile(models.Model):
-    #FIXME: http://bit.ly/emhhhj
-    user = models.OneToOneField(User)
-
-    competition = models.ForeignKey(Competition, blank=True, null=True)
-    team = models.ForeignKey(Team, blank=True, null=True)
-
-    is_participant = models.BooleanField(default=False)
-
-User.profile = property(lambda u: Profile.objects.get_or_create(user=u)[0])
+class Participant(User):
+    """ The participant. """
+    competition = models.ForeignKey(Competition)
+    team = models.ForeignKey(Team)
