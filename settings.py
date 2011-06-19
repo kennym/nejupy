@@ -116,6 +116,7 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
 
     'south',
+    'lettuce.django',
     #'grappelli',
 
     # Personal apps
