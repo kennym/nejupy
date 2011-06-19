@@ -1,11 +1,11 @@
-from django.utils import unittest
+from django.test import TestCase
 
 from datetime import datetime
 
 from manager.models import Competition
 
 
-class CompetitionTestCase(unittest.TestCase):
+class CompetitionTestCase(TestCase):
     competition = None
 
     def _get_or_create_competition(self):
