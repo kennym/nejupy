@@ -28,9 +28,15 @@ Features
 HACKING
 -------
 
-#. git clone <repository_url>
+#. ::
+   
+   git clone https://github.com/kennym/Competition-Manager.git
+
 #. Create a virtualenv environment
-#. workon <environment_name>
+#. ::
+   
+   workon <environment_name>
+
 #. Run::
 
    pip install -r requirements.txt
