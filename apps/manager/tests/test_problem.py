@@ -26,3 +26,13 @@ class ProblemTestCase(TestCase):
     def test_unicode_representation(self):
         """ Test that unicode representation is correct. """
         self.assertEquals(str(self.problem), self.problem.title)
+
+    def test_get_absolute_url(self):
+        url = self.problem.get_absolute_url()
+
+        self.assertEquals(url, u'/problem/%i' % self.problem.id)
+
+    def test_get_submit_url(self):
+        url = self.problem.submit_url()
+
+        self.assertEquals(url, u'/problem/%i/submit' % self.problem.id)
