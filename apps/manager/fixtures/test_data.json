@@ -16,5 +16,30 @@
             "description": "test competition", 
             "title": "test"
         }
+    },
+    {
+        "pk": 1, 
+        "model": "manager.participant", 
+        "fields": {
+            "competition": 1, 
+            "team": 1
+        }
+    },
+    {
+        "pk": 4, 
+        "model": "auth.user", 
+        "fields": {
+            "username": "felix", 
+            "first_name": "Felix", 
+            "last_name": "Felicus", 
+            "is_active": true, 
+            "is_superuser": false, 
+            "is_staff": false, 
+            "groups": [], 
+            "user_permissions": [], 
+            "password": "sha1$39758$df432ef737a8dfd8ddf6eb8735e31f36df440c15", 
+            "email": "test@felix.com", 
+            "date_joined": "2011-06-18 19:29:06"
+        }
     }
 ]
