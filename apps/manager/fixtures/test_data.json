@@ -26,7 +26,7 @@
         }
     },
     {
-        "pk": 4, 
+        "pk": 1, 
         "model": "auth.user", 
         "fields": {
             "username": "felix", 
@@ -40,6 +40,24 @@
             "password": "sha1$39758$df432ef737a8dfd8ddf6eb8735e31f36df440c15", 
             "email": "test@felix.com", 
             "date_joined": "2011-06-18 19:29:06"
+        }
+    },
+    {
+        "pk": 1, 
+        "model": "manager.problem", 
+        "fields": {
+            "description": "Write a program that returns the sum of two numbers.", 
+            "competition": 1, 
+            "title": "Sum of two numbers"
+        }
+    },
+    {
+        "pk": 1, 
+        "model": "manager.submission", 
+        "fields": {
+            "problem": 1, 
+            "participant": 1, 
+            "source_code": "submissions/test.py"
         }
     }
 ]

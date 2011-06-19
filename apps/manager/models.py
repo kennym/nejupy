@@ -66,3 +66,26 @@ class Participant(User):
 
     def __unicode__(self):
         return self.get_full_name()
+
+
+class Problem(models.Model):
+    """ The Problem model. """
+    competition = models.ForeignKey(Competition)
+    title = models.CharField(_("Title"), max_length=55)
+    description = models.CharField(_("Description"), max_length=500)
+
+    def __unicode__(self):
+        return self.title
+
+    
+class Submission(models.Model):
+    """ The Submission model. 
+
+    A submission gets created by a participant, and refers to a
+    problem. """
+    participant = models.ForeignKey(Participant)
+    problem = models.ForeignKey(Problem)
+    source_code = models.FileField(_("Source Code"), upload_to="submissions")
+
+    def __unicode__(self):
+        return _("Submission: %s" % (self.id))
