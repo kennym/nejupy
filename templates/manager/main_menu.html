@@ -1,0 +1,48 @@
+<header>
+    <nav id="main-menu">
+        <ul>
+            <li>
+                <a href="/">Home</a>
+            </li>
+            {% if user.is_authenticated %}
+                {% if user.participant %}
+                    <li>
+                        <a href="{% url participant-scoreboard %}">
+                            Scoreboard
+                        </a>
+                    </li>
+                {% endif %}
+                {% if user.judge %}
+                    <li>
+                        <a href="{{ user.judge.submissions }}">
+                            Submissions
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ user.judge.problems }}">
+                            Problems
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url judge-scoreboard %}">
+                            Scoreboard
+                        </a>
+                    </li>
+                {% endif %}
+                {% if user.organizer %}
+
+                {% endif %}
+            {% endif %}
+            <li class="right">
+                {% if user.is_authenticated %}
+                    Welcome {{ user.username }}.
+                {% else %}
+                    <a href="/login">
+                        Login
+                    </a>
+                {% endif %}
+            </li>
+        </ul>
+    </nav>
+</header>
+

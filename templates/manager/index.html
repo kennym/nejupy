@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Index" %}{% endblock %}
+
+{% block header %}
+    {% include "manager/main_menu.html" %}
+{% endblock %}
+
+{% block main-content %}
+    {% if user.participant %}
+    {% endif %}
+
+    {% if user.judge %}
+    {% endif %}
+{% endblock %}
+

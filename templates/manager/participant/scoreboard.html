@@ -1,0 +1,42 @@
+{% extends "competition/index.html" %}
+
+{% load i18n %}
+{% block title %}{% trans "Rankings" %}{% endblock %}
+
+{% block main-content %}
+    <table class="list" width="100%">
+        <thead>
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    {% trans "Participant" %}
+                </th>
+                <th>
+                    {% trans "Score" %}
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for participant in participants %}
+            {% if participant.id == user.participant.id %}
+            <tr style="background-color: #adff2f; font-weight: bold;">
+            {% else %}
+            <tr>
+            {% endif %}
+                <td>
+                    {{ forloop.counter }}
+                </td>
+                <td>
+                    {{ participant }}
+                </td>
+                <td>
+                    {{ participant.score }}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
