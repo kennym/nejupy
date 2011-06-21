@@ -22,6 +22,10 @@ def problem_detail(request, id):
 def submit_to_problem(request, id):
     user = request.user
     if request.method == "POST":
-        form = SubmissionForm(request.POST)
-        if form.is_valid():
-            return redirect('/')
+        if user.participant:
+            form = SubmissionForm(request.POST, request.FILES)
+            if form.is_valid():
+                form.save()
+                return redirect('/')
+        else:
+            return 
