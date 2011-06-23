@@ -9,6 +9,7 @@
 
 {% block main-content %}
     {% if user.participant %}
+        {% include "manager/participant/index.html" %}
     {% endif %}
 
     {% if user.judge %}

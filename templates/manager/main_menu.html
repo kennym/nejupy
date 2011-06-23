@@ -33,15 +33,6 @@
 
                 {% endif %}
             {% endif %}
-            <li class="right">
-                {% if user.is_authenticated %}
-                    Welcome {{ user.username }}.
-                {% else %}
-                    <a href="/login">
-                        Login
-                    </a>
-                {% endif %}
-            </li>
         </ul>
     </nav>
 </header>
