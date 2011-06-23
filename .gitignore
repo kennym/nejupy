@@ -1,3 +1,4 @@
 *.pyc
 *.db
 localsettings.py
+docs/_build
