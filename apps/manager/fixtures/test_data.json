@@ -57,7 +57,7 @@
         "fields": {
             "problem": 1, 
             "participant": 1, 
-            "source_code": "submissions/test.py"
+            "source_code": "submissions/competition_1/problem_1/user_1/test.py"
         }
     }
 ]

@@ -9,7 +9,8 @@ from manager.models import (
     Problem
 )
 
-SOURCE_CODE_DIR = os.path.abspath(os.path.dirname(__file__))
+SOURCE_CODE_DIR = os.path.join(os.path.abspath(os.path.dirname(__file__)),
+                               "sample_code")
 
 
 class SubmissionTestCase(TestCase):
@@ -23,7 +24,7 @@ class SubmissionTestCase(TestCase):
 
     def test_create_submission(self):
         """ Test creating a submission. """
-        source_code = File(open(os.path.join(SOURCE_CODE_DIR, "sample_code/test.py")))
+        source_code = File(open(os.path.join(SOURCE_CODE_DIR, "test.py")))
         submission = Submission(problem=self.problem,
                                 participant=self.participant,
                                 source_code=source_code)
@@ -35,3 +36,20 @@ class SubmissionTestCase(TestCase):
         """ Test that unicode representation is correct. """
         self.assertEquals(str(self.submission),
                           "Submission: %s" % self.submission.id)
+
+    def test_source_code_upload_path(self):
+        """ Test that source code gets saved in correct path. """
+        source_code = File(open(os.path.join(SOURCE_CODE_DIR, "test.py")))
+        submission = Submission(problem=self.problem,
+                                participant=self.participant,
+                                source_code=source_code)
+        submission.save()
+
+        expected_path = os.path.abspath(
+            "media/submissions/competition_{cid}/problem_{pid}/user_{uid}/test.py".
+            format(
+                cid=submission.participant.competition.id,
+                pid=submission.problem.id,
+                uid=submission.participant.id
+            ))
+        self.assertEquals(self.submission.source_code.path, expected_path)

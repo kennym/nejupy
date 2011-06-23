@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 
 from datetime import datetime, timedelta
+import os
 
 COMPETITION_STATS = (
     (0, _('Not started')),
@@ -85,7 +86,16 @@ class Problem(models.Model):
     def __unicode__(self):
         return self.title
 
-    
+
+def get_upload_path(instance, filename):
+    """ Return custom upload path for Submission. """
+    return os.path.join(
+        "submissions/competition_{cid}/problem_{pid}/user_{uid}/{filename}".format(
+        cid=instance.participant.competition.id,
+        pid=instance.problem.id,
+        uid=instance.participant.id,
+        filename=filename))
+
 class Submission(models.Model):
     """ The Submission model. 
 
@@ -93,7 +103,7 @@ class Submission(models.Model):
     problem. """
     participant = models.ForeignKey(Participant)
     problem = models.ForeignKey(Problem)
-    source_code = models.FileField(_("Source Code"), upload_to="submissions")
+    source_code = models.FileField(_("Source Code"), upload_to=get_upload_path)
 
     def __unicode__(self):
         return _("Submission: %s" % (self.id))
