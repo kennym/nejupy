@@ -1,0 +1,7 @@
+# localsettings.py is never shared between developers or machines. Therefore
+# it must be added localsettings.py to .gitignore or .hgignore 
+# Do not copy stuff from settings.py blindly, only override the settings that
+# need to be overriden.
+
+# Make this unique, and don't share it with anybody.
+SECRET_KEY = ''
