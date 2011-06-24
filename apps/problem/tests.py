@@ -1,9 +1,7 @@
 from django.test import TestCase
 
-from manager.models import (
-    Competition,
-    Problem,
-)
+from competition.models import Competition
+from problem.models import Problem
 
 
 class ProblemTestCase(TestCase):

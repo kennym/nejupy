@@ -1,11 +1,17 @@
-from django.test import TestCase
+from django.test import TestCase, Client
 
 from django.contrib.auth.models import User
-from manager.models import (
-    Competition,
-    Team,
-    Participant,
-)
+from competition.models import Competition
+from participant.models import Team, Participant
+
+
+
+class TeamTestCase(TestCase):
+
+    def test_create_team(self):
+        """ Test creating a team. """
+        team = Team.objects.create(name="Test team")
+        team.save()
 
 
 class ParticipantTestCase(TestCase):
@@ -14,6 +20,8 @@ class ParticipantTestCase(TestCase):
     def setUp(self):
         self.competition = Competition.objects.get(pk=1)
         self.team = Team.objects.get(pk=1)
+        self.client = Client()
+        self.participant = Participant.objects.get(pk=1)
 
     def test_create_participant(self):
         """ Test creating a participant. """
@@ -37,3 +45,13 @@ class ParticipantTestCase(TestCase):
                                  email="test@test.com")
        self.assertEquals(str(participant),
                          participant.get_full_name())
+
+#    def test_visit_index_as_participant(self):
+#        """ Test visiting index as a participant. """
+#        # Login as a user
+#        self.client.login(username=self.participant.username, password="test")
+#        # Visit the index
+#        response = self.client.get('/')
+# 
+#        self.assertEquals(response.status_code, 200)
+

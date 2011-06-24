@@ -8,11 +8,12 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     #(r'^grappelli/', include('grappelli.urls')),
-    (r'', include('manager.urls')),
+    (r'', include('problem.urls')),
+    (r'', include('competition.urls')),
 
     (r'^admin/doc/', include('django.contrib.admindocs.urls')),
     (r'^admin/', include(admin.site.urls)),
 
     url(r'^login/$', 'django.contrib.auth.views.login', {'template_name': 'login.html'}, name='login'),
-    url(r'^logout/$', 'django.contrib.auth.views.logout', {'template_name': 'login.html'}, name='logout'),
+    url(r'^logout/$', 'django.contrib.auth.views.logout', {'next_page': '/login'}, name='logout'),
 ) + static("media/", document_root=settings.MEDIA_ROOT)

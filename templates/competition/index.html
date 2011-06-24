@@ -4,15 +4,14 @@
 {% block title %}{% trans "Index" %}{% endblock %}
 
 {% block header %}
-    {% include "manager/main_menu.html" %}
+    {% include "competition/main_menu.html" %}
 {% endblock %}
 
 {% block main-content %}
     {% if user.participant %}
-        {% include "manager/participant/index.html" %}
+        {# {% include "participant/index.html" %} #}
     {% endif %}
 
     {% if user.judge %}
     {% endif %}
 {% endblock %}
-

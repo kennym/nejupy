@@ -1,22 +1,10 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import (
     redirect,
-    render_to_response,
 )
 
-from manager.forms import SubmissionForm
+from submission.forms import SubmissionForm
 
-@login_required
-def index(request):
-    user = request.user
-    if user.is_superuser:
-        return redirect('/admin')
-    else:
-        return render_to_response("manager/index.html")
-
-@login_required
-def problem_detail(request, id):
-    pass
 
 @login_required
 def submit_to_problem(request, id):
@@ -29,3 +17,8 @@ def submit_to_problem(request, id):
                 return redirect('/')
         else:
             return 
+
+@login_required
+def problem_detail(request, id):
+    pass
+

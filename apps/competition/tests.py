@@ -2,7 +2,7 @@ from django.test import TestCase
 
 from datetime import datetime
 
-from manager.models import Competition
+from competition.models import Competition
 
 
 class CompetitionTestCase(TestCase):

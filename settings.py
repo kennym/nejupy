@@ -115,12 +115,16 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.admindocs',
 
+    ## Third-party apps:
     'south',
     'lettuce.django',
     #'grappelli',
 
-    # Personal apps
-    'manager',
+    ## Project apps:
+    'competition',
+    'participant',
+    'problem',
+    'submission',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -147,12 +151,7 @@ LOGGING = {
     }
 }
 
-AUTH_PROFILE_MODULE = 'manager.Profile'
-
-# import all local settings. See localsettings.py for details on LOCAL_MIDDLEWARE_CLASSES and LOCAL_APPS
 try:
     from localsettings import *
-    INSTALLED_APPS = INSTALLED_APPS + LOCAL_APPS
-    MIDDLEWARE_CLASSES = MIDDLEWARE_CLASSES + LOCAL_MIDDLEWARE_CLASSES
 except:
     pass

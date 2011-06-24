@@ -1,13 +1,14 @@
-from django.test import TestCase
+from django.test import TestCase, Client
 from django.core.files import File
+from django.core.files.uploadedfile import SimpleUploadedFile
 
 import os
 
-from manager.models import (
-    Submission,
-    Participant,
-    Problem
-)
+from submission.models import Submission
+from submission.forms import SubmissionForm
+from participant.models import Participant
+from problem.models import Problem
+
 
 SOURCE_CODE_DIR = os.path.join(os.path.abspath(os.path.dirname(__file__)),
                                "sample_code")
@@ -17,10 +18,15 @@ class SubmissionTestCase(TestCase):
     """ Test the behaviour of submission. """
     fixtures = ["test_data.json"]
     
+    def _get_source_file(self):
+        source_file = os.path.join(SOURCE_CODE_DIR, "test.py")
+        return source_file
+
     def setUp(self):
         self.participant = Participant.objects.get(pk=1)
         self.problem = Problem.objects.get(pk=1)
         self.submission = Submission.objects.get(pk=1)
+        self.client = Client()
 
     def test_create_submission(self):
         """ Test creating a submission. """
@@ -53,3 +59,34 @@ class SubmissionTestCase(TestCase):
                 uid=submission.participant.id
             ))
         self.assertEquals(self.submission.source_code.path, expected_path)
+
+    def test_submission_form(self):
+        """ Test submission form. """
+        problem = Problem.objects.get(pk=1)
+        source_file = open(self._get_source_file(), 'rb')
+        
+        file_dict = {'source_code': 
+                     SimpleUploadedFile(source_file.name, source_file.read())}
+        form = SubmissionForm({"participant": self.participant.id,
+                               "problem": problem.id},
+                              file_dict)
+        
+        self.assertTrue(form.is_valid(), form.errors)
+
+    def test_submit_to_problem(self):
+        """ Test submitting submission. """
+        # Log in as a participant
+        self.client.login(username=self.participant.username, password="test")
+
+        problem = Problem.objects.get(pk=1)
+        source_code = open(self._get_source_file(), 'rb')
+        post_dict = {'source_code': SimpleUploadedFile(source_code.name,
+                                                       source_code.read()),
+                     'participant': self.participant.id,
+                     'problem': problem.id}
+        response = self.client.post(problem.submit_url(), post_dict, follow=True)
+
+        # Should redirect to index
+        self.assertEquals(response.redirect_chain[0][0], "http://testserver/")
+        self.assertEquals(response.status_code, 200)
+

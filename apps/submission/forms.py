@@ -1,5 +1,5 @@
 from django import forms
-from manager.models import Submission
+from submission.models import Submission
 
 class SubmissionForm(forms.ModelForm):
     class Meta:
