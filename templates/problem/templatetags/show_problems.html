@@ -1,0 +1,48 @@
+{% load i18n %}
+<table width="100%" id="participant-problems" class="list">
+    <caption>
+        {% trans "Problems" %}
+    </caption>
+    <thead>
+        <tr>
+            <th>
+                #
+            </th>
+            <th>{% trans "Title" %}</th>
+            <th>{% trans "Submissions" %}</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for problem in problems %}
+        {% if problem.submission.solved %}
+        <tr class="solved">
+        {% else %}
+        <tr>
+        {% endif %}
+            <td>
+                <a href="{{ problem.problem.get_absolute_url }}">
+                    {{ problem.problem.id }}
+                </a>
+            </td>
+            <td>
+                <a href="{{ problem.problem.get_absolute_url }}">
+                    {{ problem.problem.title }}
+                </a>
+            </td>
+        {% if problem.submission.solved %}
+            <td>
+                <a href="{{ problem.problem.get_absolute_url }}">
+                    {{ problem.submission.result }}
+                </a>
+            </td>
+        {% else %}
+            <td>
+                <a href="{{ problem.problem.get_absolute_url }}">
+                    {{ problem.submissions }}
+                </a>
+            </td>
+        {% endif %}
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

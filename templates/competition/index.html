@@ -9,7 +9,7 @@
 
 {% block main-content %}
     {% if user.participant %}
-        {# {% include "participant/index.html" %} #}
+        {% include "participant/index.html" %}
     {% endif %}
 
     {% if user.judge %}
