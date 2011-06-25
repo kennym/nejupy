@@ -1,4 +1,4 @@
-from django.test import TestCase
+from django.test import TestCase, Client
 
 from competition.models import Competition
 from participant.models import Participant
@@ -6,6 +6,25 @@ from problem.models import Problem
 from submission.models import Submission
 
 from problem.templatetags.show_problems import get_problem_meta_for
+
+
+class ViewsTestCase(TestCase):
+    """ Test views of application. """
+    fixtures = ["test_data.json"]
+
+    def setUp(self):
+        self.client = Client()
+        self.participant = Participant.objects.get(pk=1)
+
+    def test_problem_detail(self):
+        """ Test getting problem detail. """
+        self.client.login(username=self.participant.username,
+                          password="test")
+
+        problem = Problem.objects.all()[0]
+        response = self.client.get('/problem/%i' % problem.id)
+        self.assertEquals(response.status_code, 200)
+
 
 class ProblemTestCase(TestCase):
     """ Tests for Problem model. """
@@ -37,7 +56,6 @@ class ProblemTestCase(TestCase):
         url = self.problem.submit_url()
 
         self.assertEquals(url, u'/problem/%i/submit' % self.problem.id)
-
 
 class TemplateTagTestCase(TestCase):
     """ Tests for template tags. """

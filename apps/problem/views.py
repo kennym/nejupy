@@ -1,9 +1,13 @@
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseNotAllowed
 from django.shortcuts import (
     redirect,
+    get_object_or_404,
+    render_to_response,
+    RequestContext
 )
-from django.http import HttpResponseNotAllowed
 
+from problem.models import Problem
 from submission.forms import SubmissionForm
 
 
@@ -22,6 +26,12 @@ def submit_to_problem(request, id):
             return 
 
 @login_required
-def problem_detail(request, id):
-    pass
+def problem_detail(request, id, template_name="problem/detail.html"):
+    problem = get_object_or_404(Problem, pk=id)
+
+    return render_to_response(template_name,
+                              {'problem': problem},
+                              context_instance=RequestContext(request))
+                              
+                              
 
