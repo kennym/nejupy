@@ -46,6 +46,13 @@ class ParticipantTestCase(TestCase):
        self.assertEquals(str(participant),
                          participant.get_full_name())
 
+    def test_submit_submission_while_competition_not_in_progress(self):
+        """ Test submitting submission while competition is not in progress. """
+        self.client.login(username=self.participant.username, password="test")
+
+        # Try to submit a problem
+
+
 #    def test_visit_index_as_participant(self):
 #        """ Test visiting index as a participant. """
 #        # Login as a user

@@ -78,6 +78,26 @@ class CompetitionTestCase(TestCase):
         # ...which should have done nothing to the model
         self.assertEquals(competition.status, 2)
 
+#    def test_reset_competition(self):
+#        """ Test resetting competition. """
+#        competition = self._get_or_create_competition()
+#        competition.start()
+#        competition.reset()
+# 
+#        self.assertIsNone(competition.start_time)
+#        self.assertIsNone(competition.end_time)
+
+    def test_in_progress(self):
+        """ Test `in_progress` property. """
+        competition = self._get_or_create_competition()
+        self.assertFalse(competition.in_progress())
+
+        competition.start()
+        self.assertTrue(competition.in_progress())
+
+        competition.stop()
+        self.assertFalse(competition.in_progress())
+
     def test_unicode_representation(self):
         """ Test the unicode representation.
         

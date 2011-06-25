@@ -22,6 +22,12 @@ class SubmissionTestCase(TestCase):
         source_file = os.path.join(SOURCE_CODE_DIR, "test.py")
         return source_file
 
+    def get_source_code(self, pk=1):
+        source_code = open(self._get_source_file(), 'rb')
+        source_code = SimpleUploadedFile(source_code.name,
+                                         source_code.read())
+        return source_code
+
     def setUp(self):
         self.participant = Participant.objects.get(pk=1)
         self.problem = Problem.objects.get(pk=1)
@@ -78,15 +84,36 @@ class SubmissionTestCase(TestCase):
         # Log in as a participant
         self.client.login(username=self.participant.username, password="test")
 
+        competition = self.participant.competition
+        competition.start()
+        self.assertTrue(competition.in_progress())
+
         problem = Problem.objects.get(pk=1)
-        source_code = open(self._get_source_file(), 'rb')
-        post_dict = {'source_code': SimpleUploadedFile(source_code.name,
-                                                       source_code.read()),
+        post_dict = {'source_code': self.get_source_code(),
                      'participant': self.participant.id,
                      'problem': problem.id}
+        # Submit the problem
         response = self.client.post(problem.submit_url(), post_dict, follow=True)
 
         # Should redirect to index
         self.assertEquals(response.redirect_chain[0][0], "http://testserver/")
         self.assertEquals(response.status_code, 200)
 
+    def test_submit_to_problem_while_competition_not_in_progress(self):
+        """ Test submitting submission while competition is not in progress. """
+        # Log in as a participant
+        self.client.login(username=self.participant.username, password="test")
+
+        # Make sure competition hasn't started, yet.
+        competition = self.participant.competition
+        self.assertFalse(competition.in_progress())
+
+        problem = Problem.objects.get(pk=1)
+        post_dict = {'source_code': self.get_source_code(pk=1),
+                     'participant': self.participant.id,
+                     'problem': problem.id}
+
+        # Submit the problem
+        response = self.client.post(problem.submit_url(), post_dict, follow=True)
+        
+        self.assertEquals(response.status_code, 405)

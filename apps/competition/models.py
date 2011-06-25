@@ -47,6 +47,12 @@ class Competition(models.Model):
 
         self.save(force_update=True)
 
+    def in_progress(self):
+        if self.status == COMPETITION_STATS[0][0] or \
+           self.status == COMPETITION_STATS[2][0]:
+            return False
+        return True
+
     def __unicode__(self):
         return self.title
 

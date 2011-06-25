@@ -20,7 +20,7 @@ class ProblemTestCase(TestCase):
         problem.save()
 
         self.assertIsNotNone(Problem.objects.get(pk=problem.id))
-                          
+
     def test_unicode_representation(self):
         """ Test that unicode representation is correct. """
         self.assertEquals(str(self.problem), self.problem.title)
