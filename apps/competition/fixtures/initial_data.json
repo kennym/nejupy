@@ -1,0 +1,13 @@
+[
+    {
+        "pk": 1, 
+        "model": "competition.competition", 
+        "fields": {
+            "status": 0, 
+            "start_time": null, 
+            "end_time": null, 
+            "description": "test competition", 
+            "title": "test"
+        }
+    }
+]

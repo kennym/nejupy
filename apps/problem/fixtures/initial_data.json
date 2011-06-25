@@ -1,0 +1,11 @@
+[
+    {
+        "pk": 1, 
+        "model": "problem.problem", 
+        "fields": {
+            "description": "Write a program that returns the sum of two numbers.", 
+            "competition": 1, 
+            "title": "Sum of two numbers"
+        }
+    }
+]
