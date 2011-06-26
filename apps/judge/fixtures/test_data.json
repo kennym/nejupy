@@ -1,0 +1,29 @@
+[
+    {
+        "pk": 2, 
+        "model": "judge.judge", 
+        "fields": {
+            "user_permissions": [], 
+            "groups": [], 
+            "competition": 1
+        }
+    },
+    {
+        "pk": 2, 
+        "model": "auth.user", 
+        "fields": {
+            "username": "test_judge", 
+            "first_name": "First", 
+            "last_name": "Last", 
+            "is_active": true, 
+            "is_superuser": false, 
+            "is_staff": false, 
+            "last_login": "2011-06-26 11:18:15", 
+            "groups": [], 
+            "user_permissions": [], 
+            "password": "sha1$dda85$b477e9dc235a84fcc9235cc898a8cbd8e4a5751f", 
+            "email": "judge@test.com", 
+            "date_joined": "2011-06-26 11:18:15"
+        }
+    }
+]

@@ -122,6 +122,7 @@ INSTALLED_APPS = (
 
     ## Project apps:
     'competition',
+    'judge',
     'participant',
     'problem',
     'submission',
