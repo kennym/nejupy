@@ -47,9 +47,21 @@ class Competition(models.Model):
 
         self.save(force_update=True)
 
+    def not_started(self):
+        if self.status == COMPETITION_STATS[1][0] or \
+           self.status == COMPETITION_STATS[2][0]:
+            return False
+        return True
+
     def in_progress(self):
         if self.status == COMPETITION_STATS[0][0] or \
            self.status == COMPETITION_STATS[2][0]:
+            return False
+        return True
+
+    def ended(self):
+        if self.status == COMPETITION_STATS[0][0] or \
+           self.status == COMPETITION_STATS[1][0]:
             return False
         return True
 

@@ -87,6 +87,17 @@ class CompetitionTestCase(TestCase):
 #        self.assertIsNone(competition.start_time)
 #        self.assertIsNone(competition.end_time)
 
+    def test_not_started(self):
+        """ Test `not_started` property. """
+        competition = self._get_or_create_competition()
+        self.assertTrue(competition.not_started())
+
+        competition.start()
+        self.assertFalse(competition.not_started())
+
+        competition.stop()
+        self.assertFalse(competition.not_started())
+
     def test_in_progress(self):
         """ Test `in_progress` property. """
         competition = self._get_or_create_competition()
@@ -97,6 +108,17 @@ class CompetitionTestCase(TestCase):
 
         competition.stop()
         self.assertFalse(competition.in_progress())
+
+    def test_ended(self):
+        """ Test `ended` property. """
+        competition = self._get_or_create_competition()
+        self.assertFalse(competition.ended())
+
+        competition.start()
+        self.assertFalse(competition.ended())
+
+        competition.stop()
+        self.assertTrue(competition.ended())
 
     def test_unicode_representation(self):
         """ Test the unicode representation.
