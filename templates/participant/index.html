@@ -1,10 +1,14 @@
 {# {% load show_submissions %} #}
 {% load show_problems %}
+{% load show_dashboard %}
+
 {# {% load show_overview %} #}
 
-<div>
-    {# {% show_overview user.participant %} #}
+<div id="competition-dashboard" class="grid_12">
+    {% show_dashboard user %}
 </div>
+
+<div class="clear"></div>
 
 <div class="grid_6">
     {% show_problems user.participant %}

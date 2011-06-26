@@ -1,0 +1,16 @@
+{% load i18n %}
+
+{% if participant %}
+  {% if competition.not_started %}
+  <h1>{% trans "Competition not started" %}</h1>
+  {% endif %}
+
+  {% if competition.in_progress %}
+  <h1>{% trans "Competition in progress" %}</h1>
+  <h2>{% trans "Time left:" %}</h2>
+  {% endif %}
+
+  {% if competition.ended %}
+  <h1>{% trans "Competition ended" %}</h1>
+  {% endif %}
+{% endif %}
