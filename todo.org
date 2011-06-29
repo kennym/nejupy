@@ -1,0 +1,11 @@
+* TASKS
+** Judge
+*** TODO should be able to login
+*** TODO should see an overview table which has the following data:
+    |              | Problem 1 | Problem 2 | Problem 3 | Problem 4 |
+    |--------------+-----------+-----------+-----------+-----------|
+    | Contestant 1 |           |           |           |           |
+    | Contestant 2 |           |           |           |           |
+    | Contestant 3 |           |           |           |           |
+    | Contestant 4 |           |           |           |           |
+    
