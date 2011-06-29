@@ -1,5 +1,7 @@
 import os
 import sys
+import djcelery
+djcelery.setup_loader()
 
 PROJECT_ROOT = os.path.dirname(__file__)
 
@@ -97,7 +99,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
-ROOT_URLCONF = 'competitionmanager.urls'
+ROOT_URLCONF = 'nejupy.urls'
 
 TEMPLATE_DIRS = (
     '%s/templates' % PROJECT_ROOT,
@@ -118,15 +120,20 @@ INSTALLED_APPS = (
     ## Third-party apps:
     'south',
     'lettuce.django',
-    #'grappelli',
+    'djcelery',
 
     ## Project apps:
     'competition',
-    'judge',
     'participant',
     'problem',
     'submission',
 )
+
+BROKER_HOST = "localhost"
+BROKER_PORT = 5672
+BROKER_USER = "guest"
+BROKER_PASSWORD = "guest"
+BROKER_VHOST = "/"
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

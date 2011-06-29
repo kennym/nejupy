@@ -5,7 +5,7 @@ from participant.models import Participant
 from problem.models import Problem
 from submission.models import Submission
 
-from problem.templatetags.show_problems import get_problem_meta_for
+from problem.templatetags.show_problems import get_problem_meta_for, _get_problem_dict_for
 
 
 class ViewsTestCase(TestCase):
@@ -52,11 +52,6 @@ class ProblemTestCase(TestCase):
 
         self.assertEquals(url, u'/problem/%i' % self.problem.id)
 
-    def test_get_submit_url(self):
-        url = self.problem.submit_url()
-
-        self.assertEquals(url, u'/problem/%i/submit' % self.problem.id)
-
 class TemplateTagTestCase(TestCase):
     """ Tests for template tags. """
     fixtures = ["test_data.json"]
@@ -64,14 +59,25 @@ class TemplateTagTestCase(TestCase):
     def setUp(self):
         self.participant = Participant.objects.get(pk=1)
 
+    def test_get_problem_dict_for(self):
+        """ Test _get_problem_dict_for() method. """
+        problems = self.participant.competition.problem_set.all()
+        for problem in problems:
+            problem_dict = _get_problem_dict_for(problem)
+            self.assertEquals(len(problem_dict["submission"]),
+                              len(problem.submission_set.filter(participant=self.participant,
+                                                                           problem=problem)))
+            self.assertEquals(problem_dict["problem"],
+                              problem) 
+
     def test_get_problem_meta(self):
         """ Test get_problem_meta_for helper function. """
         problem_meta = get_problem_meta_for(self.participant)
 
-        problem = Problem.objects.get(pk=1)
-        submission = Submission.objects.get(problem=problem)
+        meta = []
+        for problem in self.participant.competition.problem_set.all():
+            new_dict = _get_problem_dict_for(problem)
+            meta.append(new_dict)
 
-        self.assertEquals(problem_meta,
-                          [{"submissions": 1,
-                            "problem": problem,
-                            "submission": submission}])
+        self.assertEquals(len(problem_meta),
+                          len(meta))

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block main-content %}
+  {% if user.participant %}
+    <article id="problem-detail">
+      <h1>{{ problem.title }}</h1>
+      <p>{{ problem.description }}</p>
+      <form method="post" enctype="multipart/form-data" action="{% url submit_for_problem problem.id %}">{% csrf_token %}
+      {{ form.as_p }}
+      <input type="submit"/>
+      </form>
+      
+    </article>
+  {% endif %}
+{% endblock %}

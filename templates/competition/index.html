@@ -1,10 +1,11 @@
 {% extends "base.html" %}
+{% load show_dashboard %}
 {% load i18n %}
 
 {% block title %}{% trans "Index" %}{% endblock %}
 
-{% block header %}
-    {% include "competition/main_menu.html" %}
+{% block competition-status %}
+{% show_dashboard user %}
 {% endblock %}
 
 {% block main-content %}

@@ -27,7 +27,7 @@ class ParticipantTestCase(TestCase):
         """ Test creating a participant. """
         participant = Participant(competition=self.competition,
                                   team=self.team,
-                                  username="test",
+                                  username="testing",
                                   password="test",
                                   email="test@test.com")
         participant.save()

@@ -2,3 +2,4 @@
 *.db
 localsettings.py
 docs/_build
+celerybeat-schedule

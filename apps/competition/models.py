@@ -46,6 +46,14 @@ class Competition(models.Model):
         self.end_time = datetime.now()
 
         self.save(force_update=True)
+    
+    def reset(self):
+        """ Reset the competition. """
+        self.status = COMPETITION_STATS[0][0]
+        self.start_time = None
+        self.end_time = None
+
+        self.save(force_update=True)
 
     def not_started(self):
         if self.status == COMPETITION_STATS[1][0] or \

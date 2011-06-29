@@ -7,9 +7,9 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    #(r'^grappelli/', include('grappelli.urls')),
-    (r'', include('problem.urls')),
     (r'', include('competition.urls')),
+    (r'', include('problem.urls')),
+    (r'', include('submission.urls')),
 
     (r'^admin/doc/', include('django.contrib.admindocs.urls')),
     (r'^admin/', include(admin.site.urls)),

@@ -2,7 +2,7 @@ from django.test import TestCase
 
 from datetime import datetime
 
-from competition.models import Competition
+from competition.models import Competition, COMPETITION_STATS
 
 
 class CompetitionTestCase(TestCase):
@@ -78,14 +78,15 @@ class CompetitionTestCase(TestCase):
         # ...which should have done nothing to the model
         self.assertEquals(competition.status, 2)
 
-#    def test_reset_competition(self):
-#        """ Test resetting competition. """
-#        competition = self._get_or_create_competition()
-#        competition.start()
-#        competition.reset()
-# 
-#        self.assertIsNone(competition.start_time)
-#        self.assertIsNone(competition.end_time)
+    def test_reset_competition(self):
+        """ Test resetting competition. """
+        competition = self._get_or_create_competition()
+        competition.start()
+        competition.reset()
+ 
+        self.assertIsNone(competition.start_time)
+        self.assertIsNone(competition.end_time)
+        self.assertEquals(competition.status, COMPETITION_STATS[0][0])
 
     def test_not_started(self):
         """ Test `not_started` property. """

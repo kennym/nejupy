@@ -14,10 +14,6 @@ class Problem(models.Model):
     def get_absolute_url(self):
         return ('problem.views.problem_detail', [str(self.id)])
 
-    @models.permalink
-    def submit_url(self):
-        return ('problem.views.submit_to_problem', [str(self.id)])
-
     def __unicode__(self):
         return self.title
 

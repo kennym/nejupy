@@ -1,11 +1,9 @@
-Django==1.3
+Django
 django-debug-toolbar
 django-uni-form
-django-userswitch
-django-grappelli
 lettuce
 South
 ipython
-coverage
-django-coverage
 nose
+ideone
+django-celery==2.2.4

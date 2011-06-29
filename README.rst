@@ -1,15 +1,16 @@
-===================
-Competition Manager
-===================
+======
+Nejupy
+======
 
 This project is an open-source web application for organizing
-programming competitions.  The difference from other competition
-managers (aka 'Online Judges') is that evaluation is realized by
-humans, not a computer.
+programming competitions
 
 Contestants are able upload source code solutions to problems
-specified for the competition, which can then be evaluated by human
+specified for the competition, which can then be viewed by human
 judges.
+
+The code submissions will be compiled and executed with the help of
+the `Ideone`_ `API`_
 
 The web application is intended to be run as an instance on a server
 with web servers like `Apache`_ or `nginx`_.
@@ -17,6 +18,8 @@ with web servers like `Apache`_ or `nginx`_.
 The code is mostly written in `Python`_, and is powered by
 the `Django`_ web framework.
 
+.. _`Ideone`: http://www.ideone.com
+.. _`API`: http://www.ideone.com/api
 .. _`Apache`: http://www.apache.org
 .. _`nginx`: http://en.wikipedia.org/wiki/Nginx
 .. _`Python`: http://www.python.org
@@ -38,7 +41,7 @@ User interface
 
 Programming language agnostic
     Contestans can use any programming language they're allowed to
-    use.  
+    use.
 
 Competitions in parallel
     Run multiple competitions in parallel.

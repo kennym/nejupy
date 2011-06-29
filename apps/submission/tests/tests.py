@@ -39,7 +39,8 @@ class SubmissionTestCase(TestCase):
         source_code = File(open(os.path.join(SOURCE_CODE_DIR, "test.py")))
         submission = Submission(problem=self.problem,
                                 participant=self.participant,
-                                source_code=source_code)
+                                source_code=source_code,
+                                programming_language=4)
         submission.save()
 
         self.assertIsNotNone(Submission.objects.get(pk=submission.id))
@@ -54,7 +55,8 @@ class SubmissionTestCase(TestCase):
         source_code = File(open(os.path.join(SOURCE_CODE_DIR, "test.py")))
         submission = Submission(problem=self.problem,
                                 participant=self.participant,
-                                source_code=source_code)
+                                source_code=source_code,
+                                programming_language=4)
         submission.save()
 
         expected_path = os.path.abspath(
@@ -74,7 +76,8 @@ class SubmissionTestCase(TestCase):
         file_dict = {'source_code': 
                      SimpleUploadedFile(source_file.name, source_file.read())}
         form = SubmissionForm({"participant": self.participant.id,
-                               "problem": problem.id},
+                               "problem": problem.id,
+                               "programming_language": 4},
                               file_dict)
         
         self.assertTrue(form.is_valid(), form.errors)
@@ -91,12 +94,13 @@ class SubmissionTestCase(TestCase):
         problem = Problem.objects.get(pk=1)
         post_dict = {'source_code': self.get_source_code(),
                      'participant': self.participant.id,
-                     'problem': problem.id}
+                     'problem': problem.id,
+                     "programming_language": 4}
         # Submit the problem
-        response = self.client.post(problem.submit_url(), post_dict, follow=True)
+        response = self.client.post('/problem/%i/submit' % problem.id,
+                                    post_dict, follow=True)
 
         # Should redirect to index
-        self.assertEquals(response.redirect_chain[0][0], "http://testserver/")
         self.assertEquals(response.status_code, 200)
 
     def test_submit_to_problem_while_competition_not_in_progress(self):
@@ -106,14 +110,25 @@ class SubmissionTestCase(TestCase):
 
         # Make sure competition hasn't started, yet.
         competition = self.participant.competition
+        competition.reset()
         self.assertFalse(competition.in_progress())
 
         problem = Problem.objects.get(pk=1)
         post_dict = {'source_code': self.get_source_code(pk=1),
                      'participant': self.participant.id,
-                     'problem': problem.id}
+                     'problem': problem.id,
+                     'programming_language': 4}
 
         # Submit the problem
-        response = self.client.post(problem.submit_url(), post_dict, follow=True)
+        response = self.client.post('/problem/%i/submit' % problem.id,
+                                    post_dict, follow=True)
         
         self.assertEquals(response.status_code, 405)
+
+    def test_submission_detail(self):
+        """ Test submission_detail view. """
+        self.client.login(username=self.participant.username, password="test")
+
+        response = self.client.get('/submission/%i' % self.submission.id)
+
+        self.assertEquals(response.status_code, 200)

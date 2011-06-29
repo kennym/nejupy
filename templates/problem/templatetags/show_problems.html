@@ -1,48 +1,32 @@
 {% load i18n %}
-<table width="100%" id="participant-problems" class="list">
-    <caption>
-        {% trans "Problems" %}
-    </caption>
-    <thead>
-        <tr>
-            <th>
-                #
-            </th>
-            <th>{% trans "Title" %}</th>
-            <th>{% trans "Submissions" %}</th>
-        </tr>
-    </thead>
-    <tbody>
-    {% for problem in problems %}
-        {% if problem.submission.solved %}
-        <tr class="solved">
-        {% else %}
-        <tr>
-        {% endif %}
-            <td>
-                <a href="{{ problem.problem.get_absolute_url }}">
-                    {{ problem.problem.id }}
-                </a>
-            </td>
-            <td>
-                <a href="{{ problem.problem.get_absolute_url }}">
-                    {{ problem.problem.title }}
-                </a>
-            </td>
-        {% if problem.submission.solved %}
-            <td>
-                <a href="{{ problem.problem.get_absolute_url }}">
-                    {{ problem.submission.result }}
-                </a>
-            </td>
-        {% else %}
-            <td>
-                <a href="{{ problem.problem.get_absolute_url }}">
-                    {{ problem.submissions }}
-                </a>
-            </td>
-        {% endif %}
-        </tr>
-    {% endfor %}
-    </tbody>
-</table>
+<section id = "problems">
+  {% for problem in problems %}
+  <article class="problem clearfix">
+    <div class="problem-description">
+      <h1>#{{ forloop.counter }}: <a href="{{ problem.problem.get_absolute_url }}">{{ problem.problem.title }}</a></h1>
+      <p>{{ problem.problem.description }}</p>
+    </div>
+    <div class="problem-meta">
+      {% if problem.submission %}
+        <p class="solution-submitted">
+          <a href="{{ problem.submission.get_absolute_url }}">
+            {% trans "Solution submitted" %}
+          </a>
+        </p>
+      {% else %}
+      <div class="form">
+        <form enctype="multipart/form-data"
+              encoding="multipart/form-data"
+              method="post"
+              action="{% url submit_for_problem problem.problem.id %}"
+              id="submission-form">{% csrf_token %}
+          {{ form.as_p }}
+
+          <input type="submit" value="{% trans "Submit" %}"/>
+        </form>
+      </div>
+      {% endif %}
+    </div>
+  </article>
+  {% endfor %}
+</section>

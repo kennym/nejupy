@@ -1,6 +1,14 @@
 from django import template
 from submission.models import Submission
+from submission.forms import SubmissionForm
 
+
+def _get_problem_dict_for(problem):
+    new_dict = dict()
+    new_dict["submission"] = Submission.objects.filter(problem=problem)
+    new_dict["problem"] = problem
+
+    return new_dict
 
 def get_problem_meta_for(participant):
     """ Return all problems with a submission from the `participant`.
@@ -11,15 +19,7 @@ def get_problem_meta_for(participant):
 
     problem_meta = []
     for problem in problems:
-        new_dict = {"submissions": 0,
-                    "problem": None,
-                    "submission": None}
-        for submission in problem.submission_set.filter(participant=participant):
-            # Add a submission
-            new_dict["submissions"] += 1
-            new_dict["submission"] = submission
-        new_dict["problem"] = problem
-        problem_meta.append(new_dict)
+        problem_meta.append(_get_problem_dict_for(problem))
     
     return problem_meta
        
@@ -32,7 +32,8 @@ def show_problems(participant):
 
     context = {
         "problems": get_problem_meta_for(participant),
-        "participant": participant
+        "participant": participant,
+        "form": SubmissionForm
     }
 
     return context
