@@ -11,3 +11,8 @@
     | Contestant 4 |           |           |           |           |
     
 **** TODO Judge should be able to disqualify users
+*** Submission
+**** TODO Submit source code to ideone.com asynchronously with django-celery
+
+** v0.3
+
