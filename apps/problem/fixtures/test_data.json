@@ -1,0 +1,20 @@
+[
+    {
+        "pk": 1, 
+        "model": "problem.problem", 
+        "fields": {
+            "description": "Write a program that returns the sum of two numbers.", 
+            "competition": 1, 
+            "title": "Sum of two numbers"
+        }
+    },
+    {
+        "pk": 2, 
+        "model": "problem.problem", 
+        "fields": {
+            "description": "Escribe un programa que halla el factorial de un numero ingresado por teclado", 
+            "competition": 1, 
+            "title": "Factorial de un numero."
+        }
+    }
+]
