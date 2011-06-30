@@ -79,13 +79,13 @@ Bug tracker
 
 If you have any suggestions, bug reports or annoyances please report
 them to the issue tracker at
-http://github.com/kennym/competition-manager/issues
+http://github.com/kennym/nejupy/issues
 
 
 Contributing
 ============
 
-Development happens at GitHub: http://github.com/kennym/competition-manager
+Development happens at GitHub: http://github.com/kennym/nejupy
 
 You are highly encouraged to participate in the development. If you
 don't like Github (for some reason) you're welcome to send regular
