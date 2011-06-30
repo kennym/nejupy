@@ -2,7 +2,8 @@
 ** v0.2
 *** Judge
 **** TODO Judge should be able to login
-**** TODO Judge should see an overview table which has the following data:
+**** STARTED Judge should see an overview table which has the following data:
+***** TODO Fix style
     |              | Problem 1 | Problem 2 | Problem 3 | Problem 4 |
     |--------------+-----------+-----------+-----------+-----------|
     | Contestant 1 |           |           |           |           |
