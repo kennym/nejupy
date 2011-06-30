@@ -127,6 +127,7 @@ INSTALLED_APPS = (
     'participant',
     'problem',
     'submission',
+    'judge',
 )
 
 BROKER_HOST = "localhost"
