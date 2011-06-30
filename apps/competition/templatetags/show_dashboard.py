@@ -5,10 +5,9 @@ register = template.Library()
 @register.inclusion_tag('competition/templatetags/show_dashboard.html')
 def show_dashboard(user):
     context = dict()
-    if user.participant:
-        competition = user.participant.competition
-        
-        context["competition"] = competition
-        context["participant"] = user.participant
-
-        return context
+    context["user"] = user
+    if hasattr(user, 'judge'):
+        context["competition"] = user.judge.competition
+    if hasattr(user, 'participant'):
+        context["competition"] = user.participant.competition
+    return context
