@@ -19,8 +19,58 @@
         "model": "auth.user", 
         "fields": {
             "username": "test", 
-            "first_name": "test", 
-            "last_name": "test", 
+            "first_name": "Felix", 
+            "last_name": "Felicus", 
+            "is_active": true, 
+            "is_superuser": false, 
+            "is_staff": false, 
+            "groups": [], 
+            "user_permissions": [], 
+            "password": "sha1$39758$df432ef737a8dfd8ddf6eb8735e31f36df440c15", 
+            "email": "test@test.com", 
+            "date_joined": "2011-06-18 19:29:06"
+        }
+    },
+    {
+        "pk": 2, 
+        "model": "participant.participant", 
+        "fields": {
+            "competition": 1, 
+            "team": 1
+        }
+    },
+    {
+        "pk": 2, 
+        "model": "auth.user", 
+        "fields": {
+            "username": "test1", 
+            "first_name": "Gerard", 
+            "last_name": "Broony", 
+            "is_active": true, 
+            "is_superuser": false, 
+            "is_staff": false, 
+            "groups": [], 
+            "user_permissions": [], 
+            "password": "sha1$39758$df432ef737a8dfd8ddf6eb8735e31f36df440c15", 
+            "email": "test@test.com", 
+            "date_joined": "2011-06-18 19:29:06"
+        }
+    },
+    {
+        "pk": 3, 
+        "model": "participant.participant", 
+        "fields": {
+            "competition": 1, 
+            "team": 1
+        }
+    },
+    {
+        "pk": 3, 
+        "model": "auth.user", 
+        "fields": {
+            "username": "test2", 
+            "first_name": "Samuel", 
+            "last_name": "Subaru", 
             "is_active": true, 
             "is_superuser": false, 
             "is_staff": false, 
