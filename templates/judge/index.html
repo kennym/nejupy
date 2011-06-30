@@ -1,0 +1,20 @@
+<table id="#judge-dashboard">
+  <thead>
+    <tr>
+      <th>Participant</th>
+      {% for problem in problems %}
+      <th>{{ problems.title }}</th>
+      {% endfor %}
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      {% for participant in participants %}
+      <td>{{ participant }}</td>
+      {% endfor %}
+    </tr>
+    {% for problem in problems %}
+    <tr></tr>
+    {% endfor %}
+  </tbody>
+</table>

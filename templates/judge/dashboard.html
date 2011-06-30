@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+
+{% block main-content %}
+<table class="display" id="judge-dashboard">
+  <thead>
+    <tr>
+      {% for participant in participants %}
+      <th>{{ participant }}</th>
+      {% endfor %}
+    </tr>
+  </thead>
+  <tbody>
+    {% for problem in problems %}
+      <tr>
+      {% for participant in participants %}
+        <td>{{ problem }}</td>
+      {% endfor %}
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

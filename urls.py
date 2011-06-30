@@ -10,6 +10,7 @@ urlpatterns = patterns('',
     (r'', include('competition.urls')),
     (r'', include('problem.urls')),
     (r'', include('submission.urls')),
+    (r'', include('judge.urls')),
 
     (r'^admin/doc/', include('django.contrib.admindocs.urls')),
     (r'^admin/', include(admin.site.urls)),

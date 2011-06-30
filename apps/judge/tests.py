@@ -29,3 +29,10 @@ class JudgeTestCase(TestCase):
         response = self.client.get('/')
 
         self.assertEquals(response.status_code, 200)
+
+    def test_redirect_to_dashboard_after_login(self):
+        self.client.login(username=self.judge.username, password="test")
+
+        response = self.client.get('/')
+
+        self.assertRedirects(response, '/judge/dashboard')
