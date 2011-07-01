@@ -5,17 +5,19 @@
 <table class="display" id="judge-dashboard">
   <thead>
     <tr>
-      {% for participant in participants %}
-      <th>{{ participant }}</th>
+      <th>Participant</th>
+      {% for problem in problems %}
+      <th>{{ problem }}</th>
       {% endfor %}
     </tr>
   </thead>
   <tbody>
-    {% for problem in problems %}
+    {% for participant in participants %}
       <tr>
-      {% for participant in participants %}
+        <td>{{ participant }}</td>
+        {% for problem in problems %}
         <td>{{ problem }}</td>
-      {% endfor %}
+        {% endfor %}
       </tr>
     {% endfor %}
   </tbody>
