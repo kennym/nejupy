@@ -9,5 +9,23 @@
             "description": "test competition", 
             "title": "test"
         }
+    },
+    {
+        "pk": 1000, 
+        "model": "auth.user", 
+        "fields": {
+            "username": "admin", 
+            "first_name": "", 
+            "last_name": "", 
+            "is_active": true, 
+            "is_superuser": true, 
+            "is_staff": true, 
+            "last_login": "2011-07-01 08:14:48", 
+            "groups": [], 
+            "user_permissions": [], 
+            "password": "sha1$eae53$e9208e2437cadf4a599586ac74b520b5ca2c0def", 
+            "email": "admin@admin.com", 
+            "date_joined": "2011-07-01 08:14:48"
+        }
     }
 ]

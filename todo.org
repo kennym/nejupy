@@ -13,7 +13,8 @@
     
 **** TODO Judge should be able to disqualify users
 *** Submission
-**** TODO Submit source code to ideone.com asynchronously with django-celery
+**** STARTED Submit source code to ideone.com asynchronously with django-celery
+     CLOCK: [2011-07-01 Fri 07:00]--[2011-07-01 Fri 09:34] =>  2:34
 
 ** v0.3
 

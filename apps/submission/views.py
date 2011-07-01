@@ -9,13 +9,11 @@ from django.shortcuts import (
     RequestContext
 )
 
-from ideone import Ideone
-
+from submission import tasks
 from submission.forms import SubmissionForm
 from submission.models import Submission
 from problem.models import Problem
 
-# Only participant decorator
 @login_required
 @require_POST
 def submit_for_problem(request, id):
@@ -29,19 +27,10 @@ def submit_for_problem(request, id):
         submission.competition = user.participant.competition
         submission.participant = user.participant
         submission.problem = get_object_or_404(Problem, pk=id)
-        i = Ideone('kennym', 'supermind')
-        result = i.create_submission(submission.source_code,
-                                     language_id=submission.programming_language)
-        details = i.submission_details(result['link'])
-        submission.link = result["link"]
-        submission.memory = details["memory"]
-        submission.output = details["output"]
-        submission.result = details["result"]
-        submission.status = details["status"]
-        submission.stderr = details["stderr"]
-        submission.e_time = details["time"]
         submission.save()
 
+        tasks.get_ideone_result_for.delay(submission.id)
+        
         return redirect('/',
                         context_instance=RequestContext(request))
     else:

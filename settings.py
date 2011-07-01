@@ -163,4 +163,4 @@ LOGGING = {
 try:
     from localsettings import *
 except:
-    pass
+    raise

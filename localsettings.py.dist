@@ -5,3 +5,9 @@
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = ''
+
+# Ideone credentials 
+# These are used to authenticate with the Ideone account which is
+# necessary for compiling and executing submissions
+IDEONE_USER = ''
+IDEONE_PASS = ''
