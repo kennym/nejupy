@@ -1,15 +1,15 @@
 * TASKS
 ** v0.2
 *** Judge
-**** TODO Judge should be able to login
+**** DONE Judge should be able to login
 **** STARTED Judge should see an overview table which has the following data:
-***** TODO Fix style
+***** DONE Fix style
     |              | Problem 1 | Problem 2 | Problem 3 | Problem 4 |
     |--------------+-----------+-----------+-----------+-----------|
-    | Contestant 1 |           |           |           |           |
-    | Contestant 2 |           |           |           |           |
-    | Contestant 3 |           |           |           |           |
-    | Contestant 4 |           |           |           |           |
+    | Contestant 1 | solved    | -         | -         | solved    |
+    | Contestant 2 | -         | solved    | -         | error     |
+    | Contestant 3 | -         | -         | -         | -         |
+    | Contestant 4 | -         | -         | -         | -         |
     
 **** TODO Judge should be able to disqualify users
 *** Submission
