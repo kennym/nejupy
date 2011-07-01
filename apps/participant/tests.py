@@ -52,7 +52,6 @@ class ParticipantTestCase(TestCase):
 
         # Try to submit a problem
 
-
 #    def test_visit_index_as_participant(self):
 #        """ Test visiting index as a participant. """
 #        # Login as a user
@@ -61,4 +60,3 @@ class ParticipantTestCase(TestCase):
 #        response = self.client.get('/')
 # 
 #        self.assertEquals(response.status_code, 200)
-
