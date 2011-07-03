@@ -35,4 +35,4 @@ class JudgeTestCase(TestCase):
 
         response = self.client.get('/')
 
-        self.assertRedirects(response, '/judge/dashboard')
+        self.assertEquals(response.status_code, 200)
