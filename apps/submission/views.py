@@ -29,8 +29,6 @@ def submit_for_problem(request, id):
         submission.problem = get_object_or_404(Problem, pk=id)
         submission.save()
 
-        tasks.get_ideone_result_for.delay(submission.id)
-        
         return redirect('/',
                         context_instance=RequestContext(request))
     else:
