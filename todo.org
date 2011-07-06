@@ -18,6 +18,10 @@
 **** TODO Task for uploading submission source code to ideone
 **** TODO Task for updating submission details
 *** Judge
+**** TODO Should view submission details
+
+** v0.4
+** Judge
 **** TODO Judge should be able to disqualify users
 *** UI
-**** Fancier login form
+**** TODO Fancier login form
