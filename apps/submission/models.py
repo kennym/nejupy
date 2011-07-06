@@ -56,5 +56,9 @@ class Submission(models.Model):
     e_time = models.FloatField(_("Execution time"),
                                  blank=True, null=True)
 
+    @models.permalink
+    def get_absolute_url(self):
+        return ('submission.views.submission_detail', [str(self.id)])
+    
     def __unicode__(self):
         return _("Submission: %s" % (self.id))

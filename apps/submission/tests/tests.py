@@ -132,3 +132,8 @@ class SubmissionTestCase(TestCase):
         response = self.client.get('/submission/%i' % self.submission.id)
 
         self.assertEquals(response.status_code, 200)
+
+    def test_submission_get_absolute_url(self):
+        output = self.submission.get_absolute_url()
+
+        self.assertEquals(output, "/submission/%i" % self.submission.id)
