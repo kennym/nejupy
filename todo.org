@@ -2,19 +2,22 @@
 ** v0.2
 *** Judge
 **** DONE Judge should be able to login
-**** STARTED Judge should see an overview table which has the following data:
+**** DONE Judge should see an overview table which has the following data:
+    CLOCK: [2011-07-01 Fri 07:00]--[2011-07-01 Fri 09:34] =>  2:34
 ***** DONE Fix style
     |              | Problem 1 | Problem 2 | Problem 3 | Problem 4 |
     |--------------+-----------+-----------+-----------+-----------|
-    | Contestant 1 | solved    | -         | -         | solved    |
-    | Contestant 2 | -         | solved    | -         | error     |
+    | Contestant 1 | view sub. | -         | -         | view sub. |
+    | Contestant 2 | -         | view sub. | -         |           |
     | Contestant 3 | -         | -         | -         | -         |
     | Contestant 4 | -         | -         | -         | -         |
     
-**** TODO Judge should be able to disqualify users
-*** Submission
-**** STARTED Submit source code to ideone.com asynchronously with django-celery
-     CLOCK: [2011-07-01 Fri 07:00]--[2011-07-01 Fri 09:34] =>  2:34
 
 ** v0.3
-
+*** Submission
+**** TODO Task for uploading submission source code to ideone
+**** TODO Task for updating submission details
+*** Judge
+**** TODO Judge should be able to disqualify users
+*** UI
+**** Fancier login form

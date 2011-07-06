@@ -1,9 +1,9 @@
-<table id="#judge-dashboard">
+<table id="judge-dashboard">
   <thead>
     <tr>
       <th>Participant</th>
       {% for problem in problems %}
-      <th>{{ problems.title }}</th>
+      <th>{{ problem.title }}</th>
       {% endfor %}
     </tr>
   </thead>

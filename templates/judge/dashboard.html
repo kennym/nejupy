@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load i18n %}
 
 {% block main-content %}
 <table class="display" id="judge-dashboard">
@@ -16,7 +16,13 @@
       <tr>
         <td>{{ participant }}</td>
         {% for problem in problems %}
-        <td>{{ problem }}</td>
+        <td>
+           {% for submission in problem.submission_set.all %}
+              {% if submission.participant.id == participant.id %}
+                 <a href="{{ submission.get_absolute_url }}">{% trans "View submission" %}</a>
+              {% endif %}
+           {% endfor %}
+        </td>
         {% endfor %}
       </tr>
     {% endfor %}
